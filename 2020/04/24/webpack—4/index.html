@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="webpack4," />
 
 
 
@@ -79,12 +79,31 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="我的博客">
-<meta property="og:url" content="http://wanliang1986.github.io/index.html">
+<meta name="description" content="Webpack 是一个前端资源加载&#x2F;打包工具。它将根据模块的依赖关系进行静分析，然后将这些模块按指定的规则生成对应的静态资源。 第一章 webpack安装 中文官网 https:&#x2F;&#x2F;www.webpackjs.com  安装本地webpack命令：npm install --save-dev webpack webpack-cli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack—4讲解">
+<meta property="og:url" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/index.html">
 <meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="Webpack 是一个前端资源加载&#x2F;打包工具。它将根据模块的依赖关系进行静分析，然后将这些模块按指定的规则生成对应的静态资源。 第一章 webpack安装 中文官网 https:&#x2F;&#x2F;www.webpackjs.com  安装本地webpack命令：npm install --save-dev webpack webpack-cli">
+<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3813469802,1665117316&fm=26&gp=0.jpg">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_1-1.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_1-1.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_1-2.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_1-3.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_1-4.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_2-1.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_2-2.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_2-3.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_2-4.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_2-5.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_2-6.png">
+<meta property="og:image" content="http://wanliang1986.github.io/2020/04/24/webpack%E2%80%944/webpack_2-7.png">
+<meta property="article:published_time" content="2020-04-24T03:08:24.000Z">
+<meta property="article:modified_time" content="2020-04-27T06:07:34.722Z">
 <meta property="article:author" content="Wanliang">
+<meta property="article:tag" content="webpack4">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3813469802,1665117316&fm=26&gp=0.jpg">
 
 
 
@@ -114,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://wanliang1986.github.io/"/>
+  <link rel="canonical" href="http://wanliang1986.github.io/2020/04/24/webpack—4/"/>
 
 
 
 
 
-  <title>我的博客</title>
+  <title>webpack—4讲解 | 我的博客</title>
   
 
 
@@ -140,8 +159,7 @@
   
     
   
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +252,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/24/webpack%E2%80%944/" itemprop="url">webpack—4讲解</a></h1>
+          <h1 class="post-title" itemprop="name headline">webpack—4讲解</h1>
         
 
         <div class="post-meta">
@@ -340,21 +356,102 @@
       
 
       
-        
-          <p>  <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3813469802,1665117316&fm=26&gp=0.jpg" alt="WebPack"></p>
+        <p>  <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3813469802,1665117316&fm=26&gp=0.jpg" alt="WebPack"></p>
 <p>  Webpack 是一个前端资源加载/打包工具。它将根据模块的依赖关系进行静分析，然后将这些模块按指定的规则生成对应的静态资源。</p>
 <h2 id="第一章-webpack安装"><a href="#第一章-webpack安装" class="headerlink" title="第一章 webpack安装"></a>第一章 webpack安装</h2><ul>
 <li><p>中文官网 <a href="https://www.webpackjs.com" target="_blank" rel="noopener">https://www.webpackjs.com</a></p>
 </li>
-<li><p>安装本地webpack<br>命令：<code>npm install --save-dev webpack webpack-cli</code></p></li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/24/webpack%E2%80%944/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<li><p>安装本地webpack<br>命令：<code>npm install --save-dev webpack webpack-cli</code></p>
+<a id="more"></a>
+<p>webpack 默认0配置，打包src内部文件，输出到dist目录</p>
+</li>
+<li><p>创建文件夹，在文件夹目录下运行npm install –sava-dev webpack webpack-cli 安装本地webpack</p>
+</li>
+<li><p>创建src文件夹，文件夹下添加index.js文件，文件内容如下</p>
+<!-- ![](https://i2.tiimg.com/717333/c25348178d61a5f8.png) -->
+<!-- <img src="/2020/04/24/webpack%E2%80%944/webpack_1-1.png" class=""> -->
+<p><img src="/2020/04/24/webpack%E2%80%944/webpack_1-1.png" alt></p>
+</li>
+<li><p>运行命令: npx webpack<br><img src="/2020/04/24/webpack%E2%80%944/webpack_1-2.png" alt><br>此提示是指可设置webpack的mode属性，可以是development(开发者模式)或production(生产者模式).<br>例如：npx webpack –mode development</p>
+</li>
+<li><p>打包后生成dist文件夹，文件夹内生成main.js文件，我们在dist文件夹中添加index.html文件，引入main.js<br><img src="/2020/04/24/webpack%E2%80%944/webpack_1-3.png" alt></p>
+</li>
+<li><p>浏览器中打开index.html，打开控制台，可以看到我们src文件中的index.js中代码的输出<br><img src="/2020/04/24/webpack%E2%80%944/webpack_1-4.png" alt></p>
+<h2 id="第二章-webpack配置详解"><a href="#第二章-webpack配置详解" class="headerlink" title="第二章 webpack配置详解"></a>第二章 webpack配置详解</h2><p>根据项目开发的需要，我们可以对webpack打包文件进行一系列配置，来达到我们需要的结果，下面就对webpack的配置进行详细讲解</p>
+<h4 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h4></li>
+<li><p>在项目目录下新建文件 webpack.config.js</p>
+<p>内部基础配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;webpack 是node写出来的，所以遵照node的写法</span><br><span class="line">  let path &#x3D; require(&#39;path&#39;)</span><br><span class="line">  module.exports &#x3D; &#123;</span><br><span class="line">      mode:&#39;development&#39;, &#x2F;&#x2F;模式 生产模式production，开发模式development</span><br><span class="line">      entry:&#39;.&#x2F;src&#x2F;index.js&#39;, &#x2F;&#x2F;入口</span><br><span class="line">      output:&#123;</span><br><span class="line">          filename:&#39;bundle.js&#39;, &#x2F;&#x2F;打包后的文件名</span><br><span class="line">          path:path.resolve(__dirname,&#39;build&#39;), &#x2F;&#x2F;路径必须是一个绝对路径，这里需要用到node的核心模块 </span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>运行 npx webpack 再次打包可以看到，我们已经按照配置生成了新的打包文件</p>
+<h4 id="html插件"><a href="#html插件" class="headerlink" title="html插件"></a>html插件</h4><p>html插件的作用是在打包后运行打包后文件中的html文件时，url地址并不是通过文件路径的方式打开，而是根据配置进行localhost：端口号的方式或者ip地址的方式打开</p>
+<ul>
+<li>运行命令：<code>npm install --sava-dev webpack-dev-server</code></li>
+<li>在项目的package.json文件中scripts对象中添加配置<br><img src="/2020/04/24/webpack%E2%80%944/webpack_2-1.png" alt></li>
+<li>在webpack.config.js文件中配置devServer<br><img src="/2020/04/24/webpack%E2%80%944/webpack_2-2.png" alt><br>此时即可使用npm run dev来运行，打开命令行中对应的http链接，即可看到用配置的ip及端口号的页面<br><img src="/2020/04/24/webpack%E2%80%944/webpack_2-3.png" alt></li>
+</ul>
+<p>虽然我们完成了ip及端口号的配置，但是此时打包文件中的html文件是我们手动生成的，如果没有这个html文件，那么生成的对应端口的页面会报错，下面将对自动生成html页面进行配置</p>
+<ul>
+<li>在src文件夹中新建一个html文件，作为打包生成html文件的模板<br><img src="/2020/04/24/webpack%E2%80%944/webpack_2-4.png" alt></li>
+<li>安装HtmlWebpackPlugin插件<br><code>npm install --save-dev html-webpack-plugin</code></li>
+<li>在webpack.confing.js中引入并进行插件的配置<br><img src="/2020/04/24/webpack%E2%80%944/webpack_2-5.png" alt></li>
+<li>删除原有的打包文件，重新运行打包命令，npm run build,可以发现打包文件中自动生成了index.html文件<br><img src="/2020/04/24/webpack%E2%80%944/webpack_2-6.png" alt></li>
+<li>针对html的其他常用配置<br><img src="/2020/04/24/webpack%E2%80%944/webpack_2-7.png" alt></li>
+</ul>
+</li>
+</ul>
+   <!-- ### Webpack 4.0新特性
+   #### 1, mode属性
+     webpack需要设置mode属性，可以是development(开发者模式)或production(生产者模式).
+     例如：webpack --mode development
+    ##### webpack针对开发模式提供的特性
+     - 浏览器调试
+     - 注释，开发阶段的详细错误日志和提示
+     - 快速和优化的增量构建机制
+    ##### webpack针对生产模式提供的特性
+     - 开始所有的代码优化
+     - 更小的bundle大小
+     - 去除旨在开发阶段运行的代码
+     - Scope hositing和Tree-shaking 
+    (注：Scope hositing:把多个bundle放到一个大的闭包里，加快代码的运行速度；
+         Tree-shaking：把引入但没有使用的模块忽略掉，不进行打包，减小打包后大小)
+
+   #### 2, 插件和优化
+     webpack4删除了CommonsChunkPlugin插件，它使用内置API optimization.splitChunks和
+     optimization.runtimeChunk，这样webpack会默认为你生成共享代码块。
+
+     其他插件变化
+
+     - NoEmitOnErrorsPlugin 废弃 => 使用 optimization.noEmitOnErroes 替代
+     - ModuleConcatenationPlugin 废弃 => 使用 optimization.concatenateModules 替代
+     - NameModulesPlugin 废弃 => 使用 optimization.namedModules 替代
+     - uglifyjs-webpack-plugin 升级到1.0版本
+
+   #### 3,开箱即用的webAssembly(汇编：允许在web上执行二进制代码) 
+    WebAssembly(wasm)会带来运行时性能的大幅提升，webpack对其做了开箱即用的支持，可以直
+    接对本地的wasm模块进行import或export 操作，也可以通过编写loaders 来直接import C++，
+    C或者Rust.
+
+   #### 4，支持多种模块类型
+      - javascript/auto:在webpack3里，默认开启对所有模块的支持
+      - javascript/esm:只支持ESM静态模块
+      - javascript/dynamic:只支持CommonJS和AMD这种动态模块
+      - json：只支持json数据，可以require和import 使用
+      - webassembly/experimental:只支持wasm模块
+
+   #### 5，0CJS
+     0CJS含义是0配置，webpack4尽可能的让开发者运行成本变低，不再强制需要webpack.config.js
+     作为打包入口配置文件，默认入口为'./src/'和出口'./dist'
+
+   #### 6，新的插件系统
+     对插件系统进行了修改，提供针对插件和钩子的API
+     - 所有的hook由hooks对象统一管理，它将所有的hook作为可扩展的类属性
+     - 添加插件时，必须提供一个插件名称
+     - 开发插件时，可以选择sync/callback/promise作为插件类型
+     - 可以同过this.hooks = {myHook:new SyncHook(...)}来注册hook
+
+    webpack4必须确保node版本>=8.9.4
+   -->
+
       
     </div>
     
@@ -369,14 +466,20 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/webpack4/" rel="tag"># webpack4</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -386,10 +489,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -397,6 +501,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -417,8 +525,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -502,6 +619,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一章-webpack安装"><span class="nav-number">1.</span> <span class="nav-text">第一章 webpack安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二章-webpack配置详解"><span class="nav-number">2.</span> <span class="nav-text">第二章 webpack配置详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">基础配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#html插件"><span class="nav-number">2.0.2.</span> <span class="nav-text">html插件</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -655,6 +788,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
