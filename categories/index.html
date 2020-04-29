@@ -84,7 +84,7 @@
 <meta property="og:url" content="http://wanliang1986.github.io/categories/index.html">
 <meta property="og:site_name" content="万_BLOG">
 <meta property="article:published_time" content="2020-04-22T06:48:08.000Z">
-<meta property="article:modified_time" content="2020-04-22T06:48:58.220Z">
+<meta property="article:modified_time" content="2020-04-29T12:05:07.574Z">
 <meta property="article:author" content="DEAR_WAN">
 <meta name="twitter:card" content="summary">
 
@@ -281,6 +281,9 @@
 
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -584,6 +587,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'VxIWonSrRjPf0642NhKi2T1a-gzGzoHsz',
+        appKey: 'r2WrKyKB9cy6FOLtIvrPOm7c',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
