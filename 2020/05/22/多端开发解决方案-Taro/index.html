@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-fill-left.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="taro," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Taro是一套遵循react语法规范的多端开发解决方案。   使用Taro，我们可以只书写一套代码，再通过 Taro 的编译工具，将源代码分别编译出可以在不同端（微信 &#x2F; 京东 &#x2F; 百度 &#x2F; 支付宝 &#x2F; 字节跳动 小程序、快应用、H5、React-Native 等）运行的代码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多端开发解决方案--Taro">
+<meta property="og:url" content="http://wanliang1986.github.io/2020/05/22/%E5%A4%9A%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Taro/index.html">
+<meta property="og:site_name" content="万_BLOG">
+<meta property="og:description" content="Taro是一套遵循react语法规范的多端开发解决方案。   使用Taro，我们可以只书写一套代码，再通过 Taro 的编译工具，将源代码分别编译出可以在不同端（微信 &#x2F; 京东 &#x2F; 百度 &#x2F; 支付宝 &#x2F; 字节跳动 小程序、快应用、H5、React-Native 等）运行的代码。">
+<meta property="og:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=422740527,1479493265&fm=26&gp=0.jpg">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_1.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_1.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_2.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_3.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_4.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_5.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_6.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_7.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_8.png">
+<meta property="og:image" content="http://119.45.147.89:7001/public/upload/tar_9.png">
+<meta property="article:published_time" content="2020-05-22T03:36:36.000Z">
+<meta property="article:modified_time" content="2020-05-24T09:58:29.136Z">
+<meta property="article:author" content="DEAR_WAN">
+<meta property="article:tag" content="taro">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=422740527,1479493265&fm=26&gp=0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wanliang1986.github.io/2020/05/22/多端开发解决方案-Taro/"/>
+
+
+
+
+
+  <title>多端开发解决方案--Taro | 万_BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <!--pjax：防止跳转页面音乐暂停-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script> -->
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">万_BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wanliang1986.github.io/2020/05/22/%E5%A4%9A%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Taro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DEAR_WAN">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587549113458&di=397a7c9aceac901cfe9d9aee5544173e&imgtype=0&src=http%3A%2F%2Fpics.18qiang.com%2Fattachment%2FMon_1506%2F24_2982497_bba7765b7154dda.jpg%3F23">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="万_BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">多端开发解决方案--Taro</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-22T11:36:36+08:00">
+                2020-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/05/22/%E5%A4%9A%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Taro/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/22/%E5%A4%9A%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Taro/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=422740527,1479493265&fm=26&gp=0.jpg" alt></p>
+<p>   Taro是一套遵循react语法规范的多端开发解决方案。<br>   使用Taro，我们可以只书写一套代码，再通过 Taro 的编译工具，将源代码分别编译出可以在不同端（微信 / 京东 / 百度 / 支付宝 / 字节跳动 小程序、快应用、H5、React-Native 等）运行的代码。</p>
+<a id="more"></a>
+
+<h2 id="安装与项目目录详解"><a href="#安装与项目目录详解" class="headerlink" title="安装与项目目录详解"></a>安装与项目目录详解</h2><p>Taro 项目基于 node，请确保已具备较新的 node 环境（&gt;=8.0.0）</p>
+<ul>
+<li>全局安装@tarojs/cli：<code>npm install -g @tarojs/cli</code></li>
+<li>使用命令创建模板项目：<code>taro init 项目名</code></li>
+<li>进入项目目录，安装依赖：<code>npm install</code></li>
+<li>项目目录：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">├── config                 配置目录</span><br><span class="line">|   ├── dev.js             开发时配置</span><br><span class="line">|   ├── index.js           默认配置</span><br><span class="line">|   └── prod.js            打包时配置</span><br><span class="line">├── src                    源码目录</span><br><span class="line">|   ├── components         公共组件目录</span><br><span class="line">|   ├── pages              页面文件目录</span><br><span class="line">|   |   ├── index          index 页面目录</span><br><span class="line">|   |   |   ├── banner     页面 index 私有组件</span><br><span class="line">|   |   |   ├── index.js   index 页面逻辑</span><br><span class="line">|   |   |   └── index.css  index 页面样式</span><br><span class="line">|   ├── utils              公共方法库</span><br><span class="line">|   ├── app.css            项目总通用样式</span><br><span class="line">|   └── app.js             项目入口文件</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure></li>
+<li>启动命令（h5）：<code>npm run dev:h5</code><br><img src="http://119.45.147.89:7001/public/upload/tar_1.png" alt><br>启动成功</li>
+</ul>
+<h2 id="Taro-react-hooks写法，路由及子组件"><a href="#Taro-react-hooks写法，路由及子组件" class="headerlink" title="Taro react-hooks写法，路由及子组件"></a>Taro react-hooks写法，路由及子组件</h2><h3 id="react-hooks写法"><a href="#react-hooks写法" class="headerlink" title="react-hooks写法"></a>react-hooks写法</h3><p>   在项目生成的默认文件中，所用的是react的基础写法，现在react开发更喜欢用简洁的react-hooks写法，所以，我们对index.jsx进行改造。</p>
+<ul>
+<li>修改index.jsx中的引入，将component引入改为useState<br><code>import Taro, { useState } from &#39;@tarojs/taro&#39;</code></li>
+<li>改造原本class组件的写法为react-hooks的function写法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function Index()&#123;</span><br><span class="line">  </span><br><span class="line">  return (</span><br><span class="line">    &lt;View className&#x3D;&#39;index&#39;&gt;</span><br><span class="line">           &lt;Text&gt;Hello world!&lt;&#x2F;Text&gt;</span><br><span class="line">    &lt;&#x2F;View&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Index</span><br></pre></td></tr></table></figure></li>
+<li>重新运行npm run dev:h5<br><img src="http://119.45.147.89:7001/public/upload/tar_1.png" alt><br>运行成功，说明react-hooks可以使用</li>
+</ul>
+<h3 id="路由及父子组件"><a href="#路由及父子组件" class="headerlink" title="路由及父子组件"></a>路由及父子组件</h3><h4 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h4><p>   Taro的路由配置与微信小程序的路由配置比较像，直接在app.jsx中进行路由配置，哪个路由放第一位，页面打开后默认就在哪个页面</p>
+<ul>
+<li>首先，我们在pages文件夹下，新增login文件夹，文件夹中新增login.jsx文件，文件内代码如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import Taro,&#123;useState&#125; from &#39;@tarojs&#x2F;taro&#39;</span><br><span class="line">import &#123;View,Text&#125; from &#39;@tarojs&#x2F;components&#39;</span><br><span class="line"></span><br><span class="line">function Login ()&#123;</span><br><span class="line"></span><br><span class="line">    return (</span><br><span class="line">        &lt;View&gt;</span><br><span class="line">            &lt;Text&gt;</span><br><span class="line">                这是登陆页面</span><br><span class="line">            &lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Login</span><br></pre></td></tr></table></figure></li>
+<li>在app.jsx中配置路由<br><img src="http://119.45.147.89:7001/public/upload/tar_2.png" alt></li>
+<li>运行npm run dev:h5<br><img src="http://119.45.147.89:7001/public/upload/tar_3.png" alt><br>路由配置成功<h4 id="子组件"><a href="#子组件" class="headerlink" title="子组件"></a>子组件</h4>在Taro中，只要没有配置进路由的，都会默认为组件</li>
+<li>在src中，创建component文件夹，专门用来存放组件</li>
+<li>在component文件夹下，创建pageHeader文件夹，文件夹内创建pageHeader.jsx文件，内部代码如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import Taro,&#123;useState&#125; from &#39;@tarojs&#x2F;taro&#39;</span><br><span class="line">import &#123;View,Text&#125; from &#39;@tarojs&#x2F;components&#39;</span><br><span class="line"></span><br><span class="line">function PageHeader()&#123;</span><br><span class="line">    return (</span><br><span class="line">        &lt;View&gt;</span><br><span class="line">            &lt;Text&gt;这是子组件&lt;&#x2F;Text&gt;</span><br><span class="line">        &lt;&#x2F;View&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default PageHeader</span><br></pre></td></tr></table></figure></li>
+<li>在login.jsx中引入并使用<br><img src="http://119.45.147.89:7001/public/upload/tar_4.png" alt></li>
+<li>浏览器中显示<br><img src="http://119.45.147.89:7001/public/upload/tar_5.png" alt><h4 id="父子组件传值"><a href="#父子组件传值" class="headerlink" title="父子组件传值"></a>父子组件传值</h4></li>
+<li>Taro中传值方法与react相同，都是通过props进行传值</li>
+<li>例：我们在login.jsx页面，要传一个name到PageHeader子组件<br> lohin.jsx代码如下：<br><img src="http://119.45.147.89:7001/public/upload/tar_6.png" alt><br> 子组件PageHeader代码如下：<br><img src="http://119.45.147.89:7001/public/upload/tar_7.png" alt></li>
+<li>浏览器显示<br><img src="http://119.45.147.89:7001/public/upload/tar_8.png" alt></li>
+</ul>
+<h2 id="Taro数据请求及其他"><a href="#Taro数据请求及其他" class="headerlink" title="Taro数据请求及其他"></a>Taro数据请求及其他</h2><ul>
+<li><p>Taro请求远程数据，使用Taro.request来获取<br>在index.jsx页面中，添加一个按钮，并添加获取数据的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import Taro, &#123; useState &#125; from &#39;@tarojs&#x2F;taro&#39;</span><br><span class="line">import &#123; View, Text,Button&#125; from &#39;@tarojs&#x2F;components&#39;</span><br><span class="line">import &#39;.&#x2F;index.less&#39;</span><br><span class="line"></span><br><span class="line">function Index()&#123;</span><br><span class="line"></span><br><span class="line">  const getPicList &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">    Taro.request(&#123;</span><br><span class="line">      url:&#39;http:&#x2F;&#x2F;119.45.147.89:7001&#x2F;default&#x2F;getPicList?limit&#x3D;10&amp;skip&#x3D;0&#39;</span><br><span class="line">    &#125;).then(res&#x3D;&gt;&#123;</span><br><span class="line">      console.log(res)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  return (</span><br><span class="line">    &lt;View className&#x3D;&#39;index&#39;&gt;</span><br><span class="line">          &lt;Text&gt;Hello world!&lt;&#x2F;Text&gt;</span><br><span class="line">          &lt;Button size&#x3D;&quot;mini&quot; onClick&#x3D;&#123;getPicList&#125;&gt;12345&lt;&#x2F;Button&gt;</span><br><span class="line">    &lt;&#x2F;View&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default Index</span><br></pre></td></tr></table></figure>
+<p>在浏览器中点击按钮，查看获取到的数据<br><img src="http://119.45.147.89:7001/public/upload/tar_9.png" alt></p>
+</li>
+<li><p>静态文件的引入：<br>方法的引入：import {xxx,xxx} from ‘方法文件目录’<br>静态图片引入： import img from ‘静态图片路径’</p>
+</li>
+</ul>
+<p>在实际开发的过程中，通过Taro的编译转换成其他开发程序的过程中，还是有很多问题存在，需要自己查询解决办法。后期会做一个Taro编译成小程序开发的实战项目，中间会产生的问题，会在实战中进行记录。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/taro/" rel="tag"># taro</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/20/egg-js-mongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%84%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF/" rel="next" title="egg.js+mongoDB数据库构建服务端">
+                <i class="fa fa-chevron-left"></i> egg.js+mongoDB数据库构建服务端
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587549113458&di=397a7c9aceac901cfe9d9aee5544173e&imgtype=0&src=http%3A%2F%2Fpics.18qiang.com%2Fattachment%2FMon_1506%2F24_2982497_bba7765b7154dda.jpg%3F23"
+                alt="DEAR_WAN" />
+            
+              <p class="site-author-name" itemprop="name">DEAR_WAN</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+          <div>
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=167850&auto=1&height=66"></iframe>
+
+          </div>
+          
+          <nav class="site-state motion-element">
+          
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wanliang1986" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:39335824@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装与项目目录详解"><span class="nav-number">1.</span> <span class="nav-text">安装与项目目录详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Taro-react-hooks写法，路由及子组件"><span class="nav-number">2.</span> <span class="nav-text">Taro react-hooks写法，路由及子组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#react-hooks写法"><span class="nav-number">2.1.</span> <span class="nav-text">react-hooks写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由及父子组件"><span class="nav-number">2.2.</span> <span class="nav-text">路由及父子组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#路由"><span class="nav-number">2.2.1.</span> <span class="nav-text">路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子组件"><span class="nav-number">2.2.2.</span> <span class="nav-text">子组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#父子组件传值"><span class="nav-number">2.2.3.</span> <span class="nav-text">父子组件传值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Taro数据请求及其他"><span class="nav-number">3.</span> <span class="nav-text">Taro数据请求及其他</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DEAR_WAN</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'VxIWonSrRjPf0642NhKi2T1a-gzGzoHsz',
+        appKey: 'r2WrKyKB9cy6FOLtIvrPOm7c',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
