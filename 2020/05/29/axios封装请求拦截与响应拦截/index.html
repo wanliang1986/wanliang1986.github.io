@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="mongoDB," />
+  <meta name="keywords" content="axios," />
 
 
 
@@ -86,19 +86,17 @@
 
 
 
-<meta name="description" content="mongoDB数据库是现在比较常用的数据库，本文针对其中的基本操作命令进行汇总">
+<meta name="description" content="axios是现在项目中常用的一款简洁，高效的http库。在项目中，我们与服务端人员配合，调用接口的时候，会对axios进行二次封装，做请求拦截与响应拦截">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mongoDB数据库常用命令">
-<meta property="og:url" content="http://wanliang1986.github.io/2020/05/05/mongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:title" content="axios封装请求拦截与响应拦截">
+<meta property="og:url" content="http://wanliang1986.github.io/2020/05/29/axios%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%E4%B8%8E%E5%93%8D%E5%BA%94%E6%8B%A6%E6%88%AA/index.html">
 <meta property="og:site_name" content="万_BLOG">
-<meta property="og:description" content="mongoDB数据库是现在比较常用的数据库，本文针对其中的基本操作命令进行汇总">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588738718759&di=863adb46c62d35311cde1ba7c9a07a71&imgtype=0&src=http%253A%252F%252Fwww.uml.org.cn%252Fsjjm%252Fimages%252F201404281001.jpg">
-<meta property="article:published_time" content="2020-05-05T03:21:27.000Z">
-<meta property="article:modified_time" content="2020-05-06T01:31:06.336Z">
+<meta property="og:description" content="axios是现在项目中常用的一款简洁，高效的http库。在项目中，我们与服务端人员配合，调用接口的时候，会对axios进行二次封装，做请求拦截与响应拦截">
+<meta property="article:published_time" content="2020-05-29T02:44:20.000Z">
+<meta property="article:modified_time" content="2020-05-29T03:49:46.397Z">
 <meta property="article:author" content="DEAR_WAN">
-<meta property="article:tag" content="mongoDB">
+<meta property="article:tag" content="axios">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588738718759&di=863adb46c62d35311cde1ba7c9a07a71&imgtype=0&src=http%253A%252F%252Fwww.uml.org.cn%252Fsjjm%252Fimages%252F201404281001.jpg">
 
 
 
@@ -128,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://wanliang1986.github.io/2020/05/05/mongoDB数据库常用命令/"/>
+  <link rel="canonical" href="http://wanliang1986.github.io/2020/05/29/axios封装请求拦截与响应拦截/"/>
 
 
 
 
 
-  <title>mongoDB数据库常用命令 | 万_BLOG</title>
+  <title>axios封装请求拦截与响应拦截 | 万_BLOG</title>
   
 
 
@@ -262,7 +260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://wanliang1986.github.io/2020/05/05/mongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="http://wanliang1986.github.io/2020/05/29/axios%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%E4%B8%8E%E5%93%8D%E5%BA%94%E6%8B%A6%E6%88%AA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="DEAR_WAN">
@@ -279,7 +277,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">mongoDB数据库常用命令</h1>
+          <h1 class="post-title" itemprop="name headline">axios封装请求拦截与响应拦截</h1>
         
 
         <div class="post-meta">
@@ -291,8 +289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-05T11:21:27+08:00">
-                2020-05-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-29T10:44:20+08:00">
+                2020-05-29
               </time>
             
 
@@ -314,8 +312,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -332,8 +330,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/05/05/mongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/05/mongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" itemprop="commentCount"></span>
+                <a href="/2020/05/29/axios%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%E4%B8%8E%E5%93%8D%E5%BA%94%E6%8B%A6%E6%88%AA/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/05/29/axios%E5%B0%81%E8%A3%85%E8%AF%B7%E6%B1%82%E6%8B%A6%E6%88%AA%E4%B8%8E%E5%93%8D%E5%BA%94%E6%8B%A6%E6%88%AA/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -361,54 +359,9 @@
       
 
       
-        <!-- ![mongoDB](https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1139235225,3544810372&fm=26&gp=0.jpg) -->
-<p><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1588738718759&di=863adb46c62d35311cde1ba7c9a07a71&imgtype=0&src=http%3A%2F%2Fwww.uml.org.cn%2Fsjjm%2Fimages%2F201404281001.jpg" alt></p>
-<p>mongoDB数据库是现在比较常用的数据库，本文针对其中的基本操作命令进行汇总</p>
+        <p>axios是现在项目中常用的一款简洁，高效的http库。在项目中，我们与服务端人员配合，调用接口的时候，会对axios进行二次封装，做请求拦截与响应拦截</p>
 <a id="more"></a>
-
-<h4 id="mongoDB数据库操作指令"><a href="#mongoDB数据库操作指令" class="headerlink" title="mongoDB数据库操作指令"></a>mongoDB数据库操作指令</h4><ul>
-<li>显示已有数据库：show dbs；<br>进入：use 数据库名；</li>
-<li>显示已有数据库中的集合：show collections;</li>
-<li>显示当前位置：db</li>
-<li>建立新数据库：use 数据库名（当有数据库名时进入数据库，没有时创建新的数据库并进入）</li>
-<li>向数据库集合中插入数据：<code>db.集合名.insert()</code><br>例：<code>db.user.insert({name:&#39;wwww&#39;,age:&#39;19&#39;})</code></li>
-<li>在数据库集合中查找所有数据：db.集合名.find()<br>例：<code>db.user.find()</code></li>
-<li>在数据库集合中查找第一条数据：db.集合名.findOne()<br>例：<code>db.user.findOne()</code></li>
-<li>修改数据文件：db.集合名.update({查询},{修改})<br>例：<code>db.user.update({name:wwww},{age:22})</code></li>
-<li>删除某条数据：db.集合名.remove(条件)<br>例：<code>db.user.remove({name:wwww})</code></li>
-<li>删除整个集合：db.集合名.drop()<br>例：<code>db.user.drop()</code></li>
-<li>删除真个数据库：<code>db.dropDatabase() //进入数据库后使用</code>；</li>
-</ul>
-<h4 id="update方法修改器"><a href="#update方法修改器" class="headerlink" title="update方法修改器"></a>update方法修改器</h4><ul>
-<li>$set：修改数据的指定值<br>例：<code>db.user.update({name:www},{$set:{age:&#39;33&#39;,sex:&#39;1&#39;}})</code></li>
-<li>$unset:删除数据中的某个值<br>例：<code>db.user.update({name:&#39;www},{$unset:{age:&#39;&#39;}})</code></li>
-<li>$inc:对数字进行计算修改<br>例：<code>db.user.update({name:&#39;www},{$inc:{age:-2}})</code></li>
-<li>mulit:对集合中所有数据加上相同字段<br>例：<code>db.user.update({},{$set:{insterest:[]}},{mulit:true})</code></li>
-<li>upsert:在集合中没有查询到相应数据时添加此条数据<br>例：<code>db.user.update({name:&#39;wl&#39;},{$set:{age:22}},{upsert:true})</code></li>
-<li>$push:追加数组的值或为内嵌文档增加值<br>例：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.user.update(&#123;name:&#39;wl&#39;&#125;,&#123;$push:&#123;interest:&#39;draw&#39;&#125;)&#96; &#x2F;&#x2F;追加数组的值</span><br><span class="line">db.user.update(&#123;name:&#39;wl&#39;&#125;,&#123;$push:&#123;&#39;skill.skillFour&#39;:&#39;draw&#39;&#125;) &#x2F;&#x2F;为内嵌文档增加值</span><br></pre></td></tr></table></figure></li>
-<li>$ne:查找是否存在<br>例：<code>db.workmate.update(name:&#39;wl&#39;,&#39;interest&#39;:{$ne:&#39;playGame&#39;}),{$push:{interest：‘read’}</code></li>
-<li>$addToSet:$ne的升级版（查找是否存在，不存在就push上去）<br>例：<code>db.workmate.update({name:&#39;wl&#39;},{$addToSet:{interest：‘read’}})</code></li>
-<li>$each:批量追加<br>例：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var a &#x3D; [&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]</span><br><span class="line">db.workmate.update(&#123;name:&#39;wl&#39;&#125;,&#123;$addToSet:&#123;interest:&#123;$each:a&#125;&#125;&#125;</span><br></pre></td></tr></table></figure></li>
-<li>$pop:删除数组值，两个值1，-1.1代表从数组末端开始删除，-1代表从数组开端开始删除<br>例：<code>db.workmate.update({name:&#39;wl&#39;},{$pop:{interest:1})</code></li>
-</ul>
-<h4 id="find方法"><a href="#find方法" class="headerlink" title="find方法"></a>find方法</h4><p>  find方法用于我们在数据库中查找我们需要的数据</p>
-<ul>
-<li>常规用法：<br>  例：<code>db.workmate.find({&quot;skill.skillOne&quot;:&quot;HTML+CSS&quot;})</code></li>
-<li>添加参数，筛选自己需要的字段：<br>  例：<code>db.workmate.find({&quot;skill.skillOne&quot;:&quot;HTML+CSS&quot;},{name:true,&quot;skill.skillOne&quot;:true})</code></li>
-<li>常用不等修饰符：</li>
-<li>$lt 小于<br>  例：<code>db.workmate.find({age:{$lt:30}},{name:true,age:true,&quot;skill.skillOne&quot;:true,_id:false})</code></li>
-<li>$lte 小于等于<br>  例：<code>db.workmate.find({age:{$lte:30}},{name:true,age:true,&quot;skill.skillOne&quot;:true,_id:false})</code></li>
-<li>$gt 大于<br>  例： <code>db.workmate.find({age:{$lt:30,$gt:25}},{name:true,age:true,&quot;skill.skillOne&quot;:true,_id:false})</code></li>
-<li>$gte 大于等于<br>  例：<code>db.workmate.find({age:{$lte:30,$gte:25}},{name:true,age:true,&quot;skill.skillOne&quot;:true,_id:false})</code></li>
-<li>$ne 不等于<br>  例：<code>db.workmate.find({age:{$ne:20}},{name:true,age:true,&quot;skill.skillOne&quot;:true,_id:false})</code></li>
-<li>$in 一个值在某一范围内<br>  例：<code>db.workmate.find({age:{$in:[25,33]}},{name:1,&quot;skill.skillOne&quot;:1,age:1,_id:0})</code></li>
-<li>$nin 一个值在某一范围外<br>  例：<code>db.workmate.find({age:{$nin:[25,33]}},{name:1,&quot;skill.skillOne&quot;:1,age:1,_id:0})</code></li>
-<li>$or 多个key值查询，满足其中一个条件即可  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.workmate.find(&#123;$or:[</span><br><span class="line">    &#123;age:&#123;$gte:30&#125;&#125;,</span><br><span class="line">    &#123;&quot;skill.skillThree&quot;:&#39;PHP&#39;&#125;</span><br><span class="line">]&#125;,</span><br><span class="line">    &#123;name:1,&quot;skill.skillThree&quot;:1,age:1,_id:0&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
-<li>$and 多个key值查询，必须同时满足  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">db.workmate.find(&#123;$and:[</span><br><span class="line">    &#123;age:&#123;$gte:30&#125;&#125;,</span><br><span class="line">    &#123;&quot;skill.skillThree&quot;:&#39;PHP&#39;&#125;</span><br><span class="line">]&#125;,</span><br><span class="line">    &#123;name:1,&quot;skill.skillThree&quot;:1,age:1,_id:0&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></li>
-<li>$not 查询除条件之外的值，$not修饰符不能应用在条件语句中，只能在外边进行查询使用 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">db.workmate.find(&#123;</span><br><span class="line">     age:&#123;</span><br><span class="line">         $not:&#123;</span><br><span class="line">             $lte:30,</span><br><span class="line">             $gte:20</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> &#123;name:1,&quot;skill.skillOne&quot;:1,age:1,_id:0&#125;</span><br><span class="line"> )</span><br></pre></td></tr></table></figure></li>
-<li>find方法的参数<br>  query：这个就是查询条件，MongoDB默认的第一个参数。<br>  fields：（返回内容）查询出来后显示的结果样式，可以用true和false控制是否显示。<br>  limit：返回的数量，后边跟数字，控制每次查询返回的结果数量。<br>  skip:跳过多少个显示，和limit结合可以实现分页。<br>  sort：排序方式，从小到大排序使用1，从大到小排序使用-1。<br> 例:<code>db.workmate.find({},{name:true,age:true,_id:false}).limit(0).skip(2).sort({age:1})</code></li>
-</ul>
-
+<pre><code>封装代码及注释如下：</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">import axios from &#39;axios&#39;</span><br><span class="line">import qs from &#39;qs&#39;</span><br><span class="line">import ElementUI from &#39;element-ui&#39;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 根据环境变量区分接口默认地址</span><br><span class="line"></span><br><span class="line">switch(process.env.NODE_ENV)&#123;</span><br><span class="line">    case &quot;production&quot;:    &#x2F;&#x2F;生产环境</span><br><span class="line">        axios.defaults.baseURL &#x3D; &quot;&quot;</span><br><span class="line">        break;</span><br><span class="line">    case &quot;test&quot;:   &#x2F;&#x2F;测试环境</span><br><span class="line">        axios.defaults.baseURL &#x3D; &quot;&quot;</span><br><span class="line">        break;</span><br><span class="line">    default: &#x2F;&#x2F;开发环境</span><br><span class="line">        axios.defaults.baseURL &#x3D; &quot;http:&#x2F;&#x2F;119.45.147.89:7001&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 设置超时时间和跨域是否允许携带凭证</span><br><span class="line">axios.defaults.timeout &#x3D; 10000;</span><br><span class="line">axios.defaults.withCredentials &#x3D; true</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;设置请求传递数据的格式</span><br><span class="line"></span><br><span class="line">axios.defaults.headers[&#39;Content-Type&#39;]&#x3D;&quot;application&#x2F;x-www-form-urlencoded&quot;;</span><br><span class="line">axios.defaults.transformRequest &#x3D; data&#x3D;&gt;qs.stringify(data)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;设置请求拦截器,token校验，接收服务器返回的token,存储到vuex&#x2F;本地存储，每次向服务器发请求，我们把token带上</span><br><span class="line"></span><br><span class="line">axios.interceptors.request.use(config&#x3D;&gt;&#123;</span><br><span class="line">     &#x2F;&#x2F;此处配置特殊请求头，比如携带token的请求头</span><br><span class="line">     &#x2F;&#x2F;携带token</span><br><span class="line">     let token &#x3D; localStorage.getItem(&#39;token&#39;);</span><br><span class="line">     token &amp;&amp; (config.headers.Authorization &#x3D; token)</span><br><span class="line">     return config</span><br><span class="line"> &#125;,error&#x3D;&gt;&#123;</span><br><span class="line">     return Promise.reject(error)</span><br><span class="line"> &#125;)</span><br><span class="line"></span><br><span class="line">&#x2F;*响应拦截器</span><br><span class="line">*&#x2F;</span><br><span class="line">&#x2F;&#x2F; axios.defaults.validateStatus &#x3D; status &#x3D;&gt;&#123;</span><br><span class="line">&#x2F;&#x2F;     &#x2F;&#x2F;自定义响应成功的http状态码,可不用配置</span><br><span class="line">&#x2F;&#x2F;     return &#x2F;^(2|3)\d&#123;2&#125;$&#x2F;.test(status);</span><br><span class="line">&#x2F;&#x2F; &#125;</span><br><span class="line"></span><br><span class="line">axios.interceptors.response.use(response&#x3D;&gt;&#123;</span><br><span class="line">    return response.data</span><br><span class="line">&#125;,error&#x3D;&gt;&#123;</span><br><span class="line">    let &#123;response&#125; &#x3D; error</span><br><span class="line">    if(response)&#123;</span><br><span class="line">        &#x2F;&#x2F;说明服务器返回了结果,根据状态码进行不同处理</span><br><span class="line">        &#x2F;&#x2F;公司设置不同，自己配置</span><br><span class="line">        switch(response.status)&#123;</span><br><span class="line">            case 401:</span><br><span class="line">                ElementUI.Message(&#123;</span><br><span class="line">                    type:&#39;warning&#39;,</span><br><span class="line">                    message:&#39;未登陆&#39;</span><br><span class="line">                &#125;)</span><br><span class="line">            break;</span><br><span class="line">            case 403:</span><br><span class="line">                ElementUI.Message(&#123;</span><br><span class="line">                    type:&#39;warning&#39;,</span><br><span class="line">                    message:&#39;未登陆&#39;</span><br><span class="line">                &#125;)</span><br><span class="line">            break;</span><br><span class="line">            case 404:</span><br><span class="line">                ElementUI.Message(&#123;</span><br><span class="line">                    type:&#39;warning&#39;,</span><br><span class="line">                    message:&#39;找不到页面&#39;</span><br><span class="line">                &#125;)</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        &#x2F;&#x2F;服务器没有返回结果，比如断网</span><br><span class="line">        if(!window.navigator.onLine)&#123;</span><br><span class="line">            &#x2F;&#x2F;断网处理：可以跳转到断网页面或者跳转登陆页面</span><br><span class="line">            return</span><br><span class="line">        &#125;</span><br><span class="line">        return Promise.reject(error);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export default axios</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -425,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mongoDB/" rel="tag"># mongoDB</a>
+            <a href="/tags/axios/" rel="tag"># axios</a>
           
         </div>
       
@@ -438,8 +391,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/04/24/webpack%E2%80%944/" rel="next" title="webpack4.0安装及常用配置">
-                <i class="fa fa-chevron-left"></i> webpack4.0安装及常用配置
+              <a href="/2020/05/22/%E5%A4%9A%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-Taro/" rel="next" title="多端开发解决方案--Taro">
+                <i class="fa fa-chevron-left"></i> 多端开发解决方案--Taro
               </a>
             
           </div>
@@ -447,10 +400,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/05/20/egg-js-mongoDB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9E%84%E5%BB%BA%E6%9C%8D%E5%8A%A1%E7%AB%AF/" rel="prev" title="egg.js+mongoDB数据库构建服务端">
-                egg.js+mongoDB数据库构建服务端 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -531,17 +480,8 @@ var jiathis_config={
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -625,22 +565,6 @@ var jiathis_config={
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#mongoDB数据库操作指令"><span class="nav-number">1.</span> <span class="nav-text">mongoDB数据库操作指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#update方法修改器"><span class="nav-number">2.</span> <span class="nav-text">update方法修改器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#find方法"><span class="nav-number">3.</span> <span class="nav-text">find方法</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
