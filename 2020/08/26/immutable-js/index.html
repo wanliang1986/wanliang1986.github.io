@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-fill-left.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="immutable.js," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="介绍  immutable与react同期出现，但没有被默认放到react工具集中。它内部实现了一套完整的数据持久化体系，同时还有很多比较容易使用的数据类型，  比如 List,Map,Set等  其中，最重要的三种数据结构：  Map: 键值对集合，对应于Object  List: 有序可重复的列表，对应于Array  Set：无序不可重复的列表immutable Data 一旦创建，就不能再被">
+<meta property="og:type" content="article">
+<meta property="og:title" content="immutable.js">
+<meta property="og:url" content="http://wanliang1986.github.io/2020/08/26/immutable-js/index.html">
+<meta property="og:site_name" content="万_BLOG">
+<meta property="og:description" content="介绍  immutable与react同期出现，但没有被默认放到react工具集中。它内部实现了一套完整的数据持久化体系，同时还有很多比较容易使用的数据类型，  比如 List,Map,Set等  其中，最重要的三种数据结构：  Map: 键值对集合，对应于Object  List: 有序可重复的列表，对应于Array  Set：无序不可重复的列表immutable Data 一旦创建，就不能再被">
+<meta property="article:published_time" content="2020-08-26T05:16:37.000Z">
+<meta property="article:modified_time" content="2020-08-27T05:01:48.935Z">
+<meta property="article:author" content="DEAR_WAN">
+<meta property="article:tag" content="immutable.js">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wanliang1986.github.io/2020/08/26/immutable-js/"/>
+
+
+
+
+
+  <title>immutable.js | 万_BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <!--pjax：防止跳转页面音乐暂停-->
+  <!--<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script> -->
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">万_BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wanliang1986.github.io/2020/08/26/immutable-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DEAR_WAN">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587549113458&di=397a7c9aceac901cfe9d9aee5544173e&imgtype=0&src=http%3A%2F%2Fpics.18qiang.com%2Fattachment%2FMon_1506%2F24_2982497_bba7765b7154dda.jpg%3F23">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="万_BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">immutable.js</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-26T13:16:37+08:00">
+                2020-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/26/immutable-js/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/26/immutable-js/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>  immutable与react同期出现，但没有被默认放到react工具集中。它内部实现了一套完整的数据持久化体系，同时还有很多比较容易使用的数据类型，<br>  比如 List,Map,Set等<br>  其中，最重要的三种数据结构：</p>
+<ul>
+<li><p>Map: 键值对集合，对应于Object</p>
+</li>
+<li><p>List: 有序可重复的列表，对应于Array</p>
+</li>
+<li><p>Set：无序不可重复的列表<br>immutable Data 一旦创建，就不能再被更改的数据，对immutable对象的任何修改和添加删除操作，都会返回一个新的immutable对象，这是其最本<br>质的特点</p>
+<p>为什么数据不能被改变，这是由于我们所运用的场景，比如redux来决定的， redux的基本原则是redux里的数据都是只读的，所以如果在redux中要对<br>数据进行操作，那么就需要对原数据进行拷贝操作，这时候就可以用到immutable；另一种情况是在一个复杂的业务场景中，存在一个共享数据，当多个<br>业务场景都可以操作这个数据时，就会出现不可控的结果。</p>
+<a id="more"></a>
+<p>优点：</p>
+</li>
+<li><p>降低Mutable带来的复杂度（只针对要修改的节点进行了拷贝）</p>
+</li>
+<li><p>降低了内存占用</p>
+</li>
+<li><p>便于函数式编程</p>
+<p>缺点：容易与原生对象搞混</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Map&#125; &#x3D;require(&#39;immutable&#39;)</span><br><span class="line">let a &#x3D; Map(&#123;</span><br><span class="line">    name:&#39;123&#39;,</span><br><span class="line">    car:Map(&#123;name:&#39;QQ&#39;&#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">let b &#x3D; a.set(&#39;name&#39;,&#39;2233&#39;)</span><br><span class="line"></span><br><span class="line">console.log(&#39;a&#x3D;&#x3D;&#x3D;b&#39;,a&#x3D;&#x3D;&#x3D;b) &#x2F;&#x2F;false</span><br><span class="line"></span><br><span class="line">console.log(&#39;a.get(&quot;car&quot;)&#x3D;&#x3D;&#x3D;b.get(&quot;car&quot;)&#39;,a.get(&quot;car&quot;)&#x3D;&#x3D;&#x3D;b.get(&quot;car&quot;)) &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+<h2 id="常见API"><a href="#常见API" class="headerlink" title="常见API"></a>常见API</h2><h3 id="API-List"><a href="#API-List" class="headerlink" title="API_List"></a>API_List</h3><p>  首先，List对应原生js的数组，但是List是工厂方法，所以不能用new初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const &#123;List&#125; &#x3D; require(&#39;immutable&#39;)</span><br><span class="line">&#x2F;&#x2F;const list &#x3D; new List([1,2,3,4])  &#x2F;&#x2F;错误方法</span><br><span class="line"></span><br><span class="line">const list &#x3D; List([1,2,3,4])</span><br></pre></td></tr></table></figure>
+<p>常用方法：</p>
+<h4 id="List-isList（）与List-of（）"><a href="#List-isList（）与List-of（）" class="headerlink" title="List.isList（）与List.of（）"></a>List.isList（）与List.of（）</h4><ul>
+<li>List.isList()判断是否是List类型<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(&quot;isList&quot;,List.isList(list))&#x2F;&#x2F;true</span><br><span class="line">console.log(&quot;isList&quot;,List.isList([2,3,4]))&#x2F;&#x2F;false</span><br></pre></td></tr></table></figure></li>
+<li>List.of()创建新的List<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const c &#x3D; List.of(1,2,3,4)</span><br><span class="line">console.log(c) &#x2F;&#x2F;[1,2,3,4]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="size获取长度与set方法"><a href="#size获取长度与set方法" class="headerlink" title="size获取长度与set方法"></a>size获取长度与set方法</h4><ul>
+<li>size 取得List的长度<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&quot;size:&quot;,c.size) &#x2F;&#x2F;4</span><br></pre></td></tr></table></figure></li>
+<li>set方法用来设定指定下标的值 set（下标，值）,下标可以超过List数组的最大长度，中间空白的位置会自动进行填充<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const d &#x3D;List.of(1,2,3,4)</span><br><span class="line">console.log(&quot;d:&quot;,d) &#x2F;&#x2F;[1,2,3,4]</span><br><span class="line">e &#x3D; d.set(0,223)</span><br><span class="line">console.log(&quot;e:&quot;,e) &#x2F;&#x2F;[223,2,3,4]</span><br><span class="line">f &#x3D; d.set(5,666)</span><br><span class="line">console.log(&quot;f:&quot;,f)  &#x2F;&#x2F;[1,2,3,4,undefine,666]</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="delete，insert-update-clear-setSize-setIn"><a href="#delete，insert-update-clear-setSize-setIn" class="headerlink" title="delete，insert,update,clear,setSize,setIn"></a>delete，insert,update,clear,setSize,setIn</h4><ul>
+<li>delete删除指定下标的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const d1 &#x3D; List([1,2,3,4])</span><br><span class="line">const d2 &#x3D; d1.delete(0)</span><br><span class="line">console.log(&quot;d2&quot;,d2)</span><br></pre></td></tr></table></figure></li>
+<li>insert 插入值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const i1 &#x3D; List([1,2,3,4])</span><br><span class="line">const i2 &#x3D; i1.insert(1,666)</span><br><span class="line">console.log(&quot;i2&quot;,i2)&#x2F;&#x2F;[ 1, 666, 2, 3, 4 ]</span><br></pre></td></tr></table></figure></li>
+<li>update 更新指定下标的值<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const a3 &#x3D; List([1,2,3,4])</span><br><span class="line">const a4 &#x3D; a3.update(1,x&#x3D;&gt;x+100)</span><br><span class="line">console.log(a4) &#x2F;&#x2F;[ 1, 102, 3, 4 ]</span><br></pre></td></tr></table></figure></li>
+<li>clear 清空并返回一个长度为0的数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const c5 &#x3D; List([1,2,3,4])</span><br><span class="line">const c6 &#x3D; c5.clear()</span><br><span class="line">console.log(&quot;c5&quot;,c5)&#x2F;&#x2F;[1,2,3,4]</span><br><span class="line">console.log(&quot;c6&quot;,c6)&#x2F;&#x2F;[]</span><br></pre></td></tr></table></figure></li>
+<li>setSize 重新设定数组长度，小于原数组长度会截断，大于原数组长度会用undefined进行填充<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const set1 &#x3D; List([1,2,3,4,5,6])</span><br><span class="line">const set2 &#x3D; set1.setSize(2)</span><br><span class="line">console.log(set2)&#x2F;&#x2F;[ 1, 2 ]</span><br></pre></td></tr></table></figure></li>
+<li>setIn()用来设定嵌套结构的值([第一层下标，第二层下标，…第N层下标]，值),二维数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const arr1 &#x3D; List([</span><br><span class="line">    List([1,2,3,4]),</span><br><span class="line">    List([11,22,33,44]),</span><br><span class="line">    List([111,222,333,444])</span><br><span class="line">])</span><br><span class="line">const arr2 &#x3D; arr1.setIn([2,1],0)</span><br><span class="line">console.log(arr2) &#x2F;&#x2F;List([1,2,3,4]),List([11,22,33,44]),List([111,0,333,444])</span><br></pre></td></tr></table></figure></li>
+<li>List可用原生数组的所有方法，一些特殊的方法可查官网Api</li>
+</ul>
+<h3 id="API-MAP"><a href="#API-MAP" class="headerlink" title="API_MAP"></a>API_MAP</h3><p>Map对应原生js的Object结构，它是无序的<br>Map是工厂发给发，不能使用new 实例化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Map&#125; &#x3D; require(&#39;immutable&#39;)</span><br><span class="line">const m1 &#x3D; Map(&#123;</span><br><span class="line">    x:1,</span><br><span class="line">    y:2</span><br><span class="line">&#125;)</span><br><span class="line">console.log(m1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="set-get-delete-deleteAll，clear"><a href="#set-get-delete-deleteAll，clear" class="headerlink" title="set,get,delete,deleteAll，clear"></a>set,get,delete,deleteAll，clear</h4><ul>
+<li>set设定值</li>
+<li>get取值</li>
+<li>delete删除值</li>
+<li>deleteAll批量删除</li>
+<li>clear清楚所有，返回新的Map<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Map&#125; &#x3D; require(&#39;immutable&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;set</span><br><span class="line">const a&#x3D; Map(&#123;</span><br><span class="line">    name:&#39;123&#39;,</span><br><span class="line">    car:&#39;QQ&#39;</span><br><span class="line">&#125;)</span><br><span class="line">const b &#x3D; a.set(&#39;age&#39;,18)</span><br><span class="line">console.log(b) &#x2F;&#x2F;Map&#123;name:&#39;123&#39;,car:&#39;QQ&#39;,age:18&#125;</span><br><span class="line">&#x2F;&#x2F;get</span><br><span class="line">console.log(b.get(&#39;age&#39;))&#x2F;&#x2F;18</span><br><span class="line">&#x2F;&#x2F;delete</span><br><span class="line">const c &#x3D; b.delete(&#39;age&#39;)</span><br><span class="line">console.log(c) &#x2F;&#x2F;Map&#123;name:&#39;123&#39;,car:&#39;QQ&#39;&#125;</span><br><span class="line">&#x2F;&#x2F;deleteAll</span><br><span class="line">const d &#x3D; Map(&#123;</span><br><span class="line">    a:111,</span><br><span class="line">    b:222,</span><br><span class="line">    c:333</span><br><span class="line">&#125;)</span><br><span class="line">const e &#x3D; d.deleteAll([&#39;a&#39;,&#39;b&#39;])</span><br><span class="line">console.log(e) &#x2F;&#x2F;Map&#123;c:333&#125;</span><br><span class="line">&#x2F;&#x2F;clear</span><br><span class="line">const cls &#x3D; d.clear()</span><br><span class="line">console.log(cls)&#x2F;&#x2F;Map&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="update-merge-concat-mergeWith-setIn"><a href="#update-merge-concat-mergeWith-setIn" class="headerlink" title="update,merge,concat,mergeWith,setIn"></a>update,merge,concat,mergeWith,setIn</h4><ul>
+<li>update 更新 update(key,callback)</li>
+<li>merge与concat相同，合并</li>
+<li>mergeWith 类似与merge,但指定了具体规则</li>
+<li>setIn 对于嵌套结构进行设置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;update</span><br><span class="line">const aa &#x3D; Map(&#123;</span><br><span class="line">    name:&#39;111&#39;,</span><br><span class="line">    age:1000</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const bb &#x3D; aa.update(&#39;age&#39;,x&#x3D;&gt;x*2)</span><br><span class="line">console.log(bb) &#x2F;&#x2F;Map&#123;name:111,age:2000&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;merge</span><br><span class="line">const mer1 &#x3D; Map(&#123;</span><br><span class="line">    x:1,</span><br><span class="line">    y:2</span><br><span class="line">&#125;)</span><br><span class="line">const mer2 &#x3D; Map(&#123;</span><br><span class="line">    y:222,</span><br><span class="line">    z:333</span><br><span class="line">&#125;)</span><br><span class="line">const mer3 &#x3D; mer1.merge(mer2)</span><br><span class="line">console.log(mer3) &#x2F;&#x2F;Map&#123;x:1,y:222,z:333&#125;重复的key会覆盖</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;mergeWith</span><br><span class="line">const mer4&#x3D;mer1.mergeWith((oldval,newVal)&#x3D;&gt;&#123;return newVal+&#39;!!!&#39;&#125;,mer2)</span><br><span class="line">console.log(mer4) &#x2F;&#x2F;Map&#123;x：1，y:&quot;222!!!&quot;,z:333&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;setIn</span><br><span class="line">const fff &#x3D; Map(&#123;</span><br><span class="line">    lev1:Map(&#123;</span><br><span class="line">        lev2:Map(&#123;</span><br><span class="line">            lev3:Map(&#123;</span><br><span class="line">                lev4:&#39;good&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">const fff2 &#x3D; fff1.setIn([&#39;lev1&#39;,&#39;lev2&#39;,&#39;lev3&#39;,&#39;lev4&#39;],&#39;hello&#39;)</span><br><span class="line">&#x2F;&#x2F;obj.lev1.lev2.lev3.lev4&#x3D;&#39;hello&#39;</span><br><span class="line">console.log(fff2) &#x2F;&#x2F;Map&#123;lev1:Map&#123;lev2:Map&#123;lev3:Map&#123;lev4:&#39;hello&#39;&#125;&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="toJs与toJSON，将Map转换成原生object，深转换与浅转换"><a href="#toJs与toJSON，将Map转换成原生object，深转换与浅转换" class="headerlink" title="toJs与toJSON，将Map转换成原生object，深转换与浅转换"></a>toJs与toJSON，将Map转换成原生object，深转换与浅转换</h4><ul>
+<li>toJs转换全部结构</li>
+<li>toJSON只转换一层<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">onst fff &#x3D; Map(&#123;</span><br><span class="line">    lev1:Map(&#123;</span><br><span class="line">        lev2:Map(&#123;</span><br><span class="line">            lev3:Map(&#123;</span><br><span class="line">                lev4:&#39;good&#39;</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">const fff3 &#x3D; fff.toJS()</span><br><span class="line">console.log(fff3)&#x2F;&#x2F;&#123;lev1:&#123;lev2:&#123;lev3:&#123;lev4:&#39;good&#39;&#125;&#125;&#125;&#125;</span><br><span class="line">const fff4 &#x3D; fff.toJSON()</span><br><span class="line">console.log(fff4)&#x2F;&#x2F;&#123;lev1:Map&#123;lev2:Map&#123;lev3:Map&#123;lev4:&#39;good&#125;&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="API-SET"><a href="#API-SET" class="headerlink" title="API_SET"></a>API_SET</h3><ul>
+<li>union 将多个Set合并成一个Set</li>
+<li>intersect 取N个Set的交集</li>
+<li>subtract 从set中除去一些值</li>
+<li>groupBy 分组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">const &#123;Set&#125; &#x3D; require(&#39;immutable&#39;)</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;union</span><br><span class="line">const a1 &#x3D; Set([1,2,3,4])</span><br><span class="line">const a2 &#x3D; Set([2,3,4,5])</span><br><span class="line">const a3 &#x3D; a1.union(a2)</span><br><span class="line">console.log(a3)&#x2F;&#x2F;Set &#123;1,2,3,4,5&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;intersect</span><br><span class="line"></span><br><span class="line">const a4 &#x3D; a1.intersect(a2)</span><br><span class="line">console.log(a4) &#x2F;&#x2F;Set &#123;2,3,4&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;subtract</span><br><span class="line"></span><br><span class="line">const a5 &#x3D; a3.subtract([2,3,4])</span><br><span class="line">console.log(a5) &#x2F;&#x2F;Set &#123;1,5&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;groupBy</span><br><span class="line">const listOfMaps &#x3D; List([</span><br><span class="line">  Map(&#123; v: 0 &#125;),</span><br><span class="line">  Map(&#123; v: 1 &#125;),</span><br><span class="line">  Map(&#123; v: 1 &#125;),</span><br><span class="line">  Map(&#123; v: 0 &#125;),</span><br><span class="line">  Map(&#123; v: 2 &#125;)</span><br><span class="line">])</span><br><span class="line">const groupsOfMaps &#x3D; listOfMaps.groupBy(x &#x3D;&gt; x.get(&#39;v&#39;))</span><br><span class="line">&#x2F;&#x2F; Map &#123;</span><br><span class="line">&#x2F;&#x2F;   0: List [ Map&#123; &quot;v&quot;: 0 &#125;, Map &#123; &quot;v&quot;: 0 &#125; ],</span><br><span class="line">&#x2F;&#x2F;   1: List [ Map&#123; &quot;v&quot;: 1 &#125;, Map &#123; &quot;v&quot;: 1 &#125; ],</span><br><span class="line">&#x2F;&#x2F;   2: List [ Map&#123; &quot;v&quot;: 2 &#125; ],</span><br><span class="line">&#x2F;&#x2F; &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="与react结合"><a href="#与react结合" class="headerlink" title="与react结合"></a>与react结合</h2><p>简单的购物车例子</p>
+<ul>
+<li>App.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import React,&#123;useState, useEffect&#125; from &#39;react&#39;;</span><br><span class="line">import MyCart from &#39;.&#x2F;myCart&#39;</span><br><span class="line">import &#123;Map&#125; from &#39;immutable&#39;</span><br><span class="line">import &#39;.&#x2F;App.css&#39;;</span><br><span class="line"></span><br><span class="line">function App() &#123;</span><br><span class="line">  const a &#x3D; Map(&#123;&#125;)</span><br><span class="line">  const [cart,setCart] &#x3D; useState(a)</span><br><span class="line">  const [goodsName,setGoodsName] &#x3D; useState(&#39;&#39;)</span><br><span class="line">  const [number,setNumber] &#x3D; useState(null)</span><br><span class="line">  const submit &#x3D; ()&#x3D;&gt;&#123;</span><br><span class="line">    const newCart &#x3D; cart.set(goodsName,number)</span><br><span class="line">    setCart(newCart)</span><br><span class="line">  &#125;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div className&#x3D;&quot;App&quot;&gt;</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">         商品：&lt;input type&#x3D;&quot;text&quot; onChange&#x3D;&#123;(e)&#x3D;&gt;&#123;setGoodsName(e.target.value)&#125;&#125;&#x2F;&gt;&lt;br&#x2F;&gt;</span><br><span class="line">         数量：&lt;input type&#x3D;&quot;number&quot; onChange&#x3D;&#123;(e)&#x3D;&gt;&#123;setNumber(e.target.value)&#125;&#125;&gt;&lt;&#x2F;input&gt;</span><br><span class="line">         &lt;button onClick&#x3D;&#123;()&#x3D;&gt;&#123;submit()&#125;&#125;&gt;提交&lt;&#x2F;button&gt;</span><br><span class="line">      &lt;&#x2F;div&gt;</span><br><span class="line">      &lt;hr&#x2F;&gt;</span><br><span class="line">      &lt;MyCart cart&#x3D;&#123;cart&#125;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default App;</span><br></pre></td></tr></table></figure></li>
+<li>myCart.js<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; Component &#125; from &#39;react&#39;;</span><br><span class="line">import &#123;is&#125; from &#39;immutable&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Mycart extends Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line">        this.state &#x3D; &#123; </span><br><span class="line">            cart:[]</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    shouldComponentUpdate(nextProps)&#123;</span><br><span class="line">        return !is(nextProps.cart,this.props.cart)</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123; </span><br><span class="line">        console.log(&#39;render&#39;)</span><br><span class="line">        const lis &#x3D; []</span><br><span class="line">        this.props.cart.forEach((v,k)&#x3D;&gt;&#123;</span><br><span class="line">            lis.push(&lt;li key&#x3D;&#123;v&#125;&gt;商品：&#123;k&#125; 数量：&#123;v&#125;&lt;&#x2F;li&gt;)</span><br><span class="line">        &#125;)</span><br><span class="line">        return ( </span><br><span class="line">            &lt;ul&gt;</span><br><span class="line">               &#123;lis&#125;</span><br><span class="line">            &lt;&#x2F;ul&gt;</span><br><span class="line">         );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">export default Mycart;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/immutable-js/" rel="tag"># immutable.js</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/12/window%E4%B8%AD%E7%9A%84fetch%E8%AF%B7%E6%B1%82/" rel="next" title="window中的fetch请求">
+                <i class="fa fa-chevron-left"></i> window中的fetch请求
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/27/React%E5%B0%81%E8%A3%85%E6%AD%A5%E9%AA%A4%E6%9D%A1stepper/" rel="prev" title="React封装步骤条stepper">
+                React封装步骤条stepper <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587549113458&di=397a7c9aceac901cfe9d9aee5544173e&imgtype=0&src=http%3A%2F%2Fpics.18qiang.com%2Fattachment%2FMon_1506%2F24_2982497_bba7765b7154dda.jpg%3F23"
+                alt="DEAR_WAN" />
+            
+              <p class="site-author-name" itemprop="name">DEAR_WAN</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+          <div>
+            <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=167850&auto=1&height=66"></iframe>
+
+          </div>
+          
+          <nav class="site-state motion-element">
+          
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/wanliang1986" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:39335824@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见API"><span class="nav-number">2.</span> <span class="nav-text">常见API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#API-List"><span class="nav-number">2.1.</span> <span class="nav-text">API_List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#List-isList（）与List-of（）"><span class="nav-number">2.1.1.</span> <span class="nav-text">List.isList（）与List.of（）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#size获取长度与set方法"><span class="nav-number">2.1.2.</span> <span class="nav-text">size获取长度与set方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#delete，insert-update-clear-setSize-setIn"><span class="nav-number">2.1.3.</span> <span class="nav-text">delete，insert,update,clear,setSize,setIn</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-MAP"><span class="nav-number">2.2.</span> <span class="nav-text">API_MAP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#set-get-delete-deleteAll，clear"><span class="nav-number">2.2.1.</span> <span class="nav-text">set,get,delete,deleteAll，clear</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#update-merge-concat-mergeWith-setIn"><span class="nav-number">2.2.2.</span> <span class="nav-text">update,merge,concat,mergeWith,setIn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#toJs与toJSON，将Map转换成原生object，深转换与浅转换"><span class="nav-number">2.2.3.</span> <span class="nav-text">toJs与toJSON，将Map转换成原生object，深转换与浅转换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#API-SET"><span class="nav-number">2.3.</span> <span class="nav-text">API_SET</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与react结合"><span class="nav-number">3.</span> <span class="nav-text">与react结合</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">DEAR_WAN</span>
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+-->
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'VxIWonSrRjPf0642NhKi2T1a-gzGzoHsz',
+        appKey: 'r2WrKyKB9cy6FOLtIvrPOm7c',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

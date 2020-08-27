@@ -256,6 +256,322 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wanliang1986.github.io/2020/08/27/React%E5%B0%81%E8%A3%85%E6%AD%A5%E9%AA%A4%E6%9D%A1stepper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DEAR_WAN">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587549113458&di=397a7c9aceac901cfe9d9aee5544173e&imgtype=0&src=http%3A%2F%2Fpics.18qiang.com%2Fattachment%2FMon_1506%2F24_2982497_bba7765b7154dda.jpg%3F23">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="万_BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/27/React%E5%B0%81%E8%A3%85%E6%AD%A5%E9%AA%A4%E6%9D%A1stepper/" itemprop="url">React封装步骤条stepper</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-27T10:10:30+08:00">
+                2020-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/27/React%E5%B0%81%E8%A3%85%E6%AD%A5%E9%AA%A4%E6%9D%A1stepper/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/27/React%E5%B0%81%E8%A3%85%E6%AD%A5%E9%AA%A4%E6%9D%A1stepper/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>工作中用到material-ui的步骤条，但其中遇到一些问题，其组件并不能满足业务需求，所以自己封装一个可扩展方法的步骤条<br>代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123; useState &#125; from &#39;react&#39;;</span><br><span class="line">import &#123; makeStyles &#125; from &#39;@material-ui&#x2F;core&#x2F;styles&#39;;</span><br><span class="line">import CheckIcon from &#39;@material-ui&#x2F;icons&#x2F;Check&#39;;</span><br><span class="line">import CloseIcon from &#39;@material-ui&#x2F;icons&#x2F;Close&#39;</span><br><span class="line"></span><br><span class="line">const useStyles &#x3D; makeStyles((theme) &#x3D;&gt; (&#123;</span><br><span class="line">    root: &#123;</span><br><span class="line">        width: &#39;500px&#39;,</span><br><span class="line">        height: &#39;60px&#39;,</span><br><span class="line">        display: &#39;inline-flex&#39;,</span><br><span class="line">        flexDirection: &#39;row&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    stepBox: &#123;</span><br><span class="line"></span><br><span class="line">        height: &#39;100%&#39;,</span><br><span class="line">        textAlign: &#39;center&#39;,</span><br><span class="line">        flex: 1</span><br><span class="line">    &#125;,</span><br><span class="line">    stepBoxLeft: &#123;</span><br><span class="line">        width: &#39;65%&#39;,</span><br><span class="line">        height: &#39;100%&#39;,</span><br><span class="line">        textAlign: &#39;center&#39;,</span><br><span class="line">        float: &#39;left&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    stepBoxNumber: &#123;</span><br><span class="line">        width: &#39;100%&#39;,</span><br><span class="line">        height: &#39;50%&#39;,</span><br><span class="line">        lineHeight: &#39;30px&#39;,</span><br><span class="line">        textAlign: &#39;center&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    stepBoxNone: &#123;</span><br><span class="line">        width: &#39;25px&#39;,</span><br><span class="line">        height: &#39;25px&#39;,</span><br><span class="line">        borderRadius: &#39;50%&#39;,</span><br><span class="line">        backgroundColor: &#39;#efefef&#39;,</span><br><span class="line">        margin: &quot;0 auto&quot;,</span><br><span class="line">        lineHeight: &#39;25px&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    stepBoxStage: &#123;</span><br><span class="line">        width: &#39;25px&#39;,</span><br><span class="line">        height: &#39;25px&#39;,</span><br><span class="line">        borderRadius: &#39;50%&#39;,</span><br><span class="line">        backgroundColor: &#39;#3f51b5&#39;,</span><br><span class="line">        margin: &quot;0 auto&quot;,</span><br><span class="line">        color: &#39;white&#39;,</span><br><span class="line">        lineHeight: &#39;25px&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    stepBoxFinish: &#123;</span><br><span class="line">        width: &#39;25px&#39;,</span><br><span class="line">        height: &#39;25px&#39;,</span><br><span class="line">        borderRadius: &#39;50%&#39;,</span><br><span class="line">        backgroundColor: &#39;#3f51b5&#39;,</span><br><span class="line">        color: &#39;white&#39;,</span><br><span class="line">        margin: &quot;0 auto&quot;,</span><br><span class="line">        lineHeight: &#39;25px&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    stepBoxTitle: &#123;</span><br><span class="line">        width: &#39;100%&#39;,</span><br><span class="line">        height: &#39;50%&#39;,</span><br><span class="line">        lineHeight: &#39;30px&#39;,</span><br><span class="line">        fontSize: &#39;12px&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    stepBoxRight: &#123;</span><br><span class="line">        width: &#39;35%&#39;,</span><br><span class="line">        height: &#39;50%&#39;,</span><br><span class="line">        textAlign: &#39;center&#39;,</span><br><span class="line">        float: &#39;left&#39;,</span><br><span class="line">        lineHeight: &#39;15px&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">    stepLine: &#123;</span><br><span class="line">        width: &#39;100%&#39;,</span><br><span class="line">        height: &#39;1px&#39;,</span><br><span class="line">        backgroundColor: &#39;#acacac&#39;,</span><br><span class="line">        display: &#39;inline-block&#39;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line">const MyStep &#x3D; props &#x3D;&gt; &#123;</span><br><span class="line">    const classes &#x3D; useStyles();</span><br><span class="line">    const finishState &#x3D; [1, 2]; &#x2F;&#x2F;已学习完阶段</span><br><span class="line">    const courseState &#x3D; 4; &#x2F;&#x2F;正在学习阶段</span><br><span class="line">    const skip &#x3D; [3]</span><br><span class="line">    const steps &#x3D; [&#39;第一阶段&#39;, &#39;第二阶段&#39;, &#39;第三阶段&#39;, &#39;第四阶段&#39;, &#39;第五阶段&#39;];</span><br><span class="line">    return (</span><br><span class="line">        &lt;div className&#x3D;&#123;classes.root&#125;&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                steps.map((item, index) &#x3D;&gt; &#123;</span><br><span class="line">                    return (</span><br><span class="line">                        &lt;div key&#x3D;&#123;index&#125; className&#x3D;&#123;classes.stepBox&#125;&gt;</span><br><span class="line"></span><br><span class="line">                            &lt;div className&#x3D;&#123;classes.stepBoxLeft&#125;&gt;</span><br><span class="line">                                &lt;div className&#x3D;&#123;classes.stepBoxNumber&#125;&gt;</span><br><span class="line">                                    &lt;div className&#x3D;&#123;</span><br><span class="line">                                        (finishState.indexOf(index + 1) &#x3D;&#x3D; -1) ? </span><br><span class="line">                                        courseState !&#x3D;&#x3D; (index + 1)?</span><br><span class="line">                                        (skip.indexOf(index + 1) &#x3D;&#x3D; -1)?  </span><br><span class="line">                                        classes.stepBoxNone : </span><br><span class="line">                                        classes.stepBoxStage : </span><br><span class="line">                                        classes.stepBoxFinish:</span><br><span class="line">                                        classes.stepBoxStage&#125;&gt;</span><br><span class="line">                                        &#123;(finishState.indexOf(index + 1) &#x3D;&#x3D; -1) ? (skip.indexOf(index + 1) &#x3D;&#x3D; -1) ? (&lt;span&gt;&#123;index + 1&#125;&lt;&#x2F;span&gt;) : (&lt;div&gt;&lt;CloseIcon &#x2F;&gt;&lt;&#x2F;div&gt;) : (&lt;div&gt;&lt;CheckIcon &#x2F;&gt;&lt;&#x2F;div&gt;)&#125;</span><br><span class="line">                                    &lt;&#x2F;div&gt;</span><br><span class="line">                                &lt;&#x2F;div&gt;</span><br><span class="line">                                &lt;div className&#x3D;&#123;classes.stepBoxTitle&#125;&gt;&#123;item&#125;&lt;&#x2F;div&gt;</span><br><span class="line">                            &lt;&#x2F;div&gt;</span><br><span class="line">                            &lt;div className&#x3D;&#123;classes.stepBoxRight&#125;&gt;</span><br><span class="line">                                &#123;index !&#x3D;&#x3D; (steps.length - 1) ? (&lt;span className&#x3D;&#123;classes.stepLine&#125;&gt;&lt;&#x2F;span&gt;) : null&#125;</span><br><span class="line">                            &lt;&#x2F;div&gt;</span><br><span class="line">                        &lt;&#x2F;div&gt;</span><br><span class="line">                    )</span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &lt;&#x2F;div&gt;</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default MyStep</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://wanliang1986.github.io/2020/08/26/immutable-js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DEAR_WAN">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1587549113458&di=397a7c9aceac901cfe9d9aee5544173e&imgtype=0&src=http%3A%2F%2Fpics.18qiang.com%2Fattachment%2FMon_1506%2F24_2982497_bba7765b7154dda.jpg%3F23">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="万_BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/26/immutable-js/" itemprop="url">immutable.js</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-26T13:16:37+08:00">
+                2020-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/08/26/immutable-js/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/08/26/immutable-js/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>  immutable与react同期出现，但没有被默认放到react工具集中。它内部实现了一套完整的数据持久化体系，同时还有很多比较容易使用的数据类型，<br>  比如 List,Map,Set等<br>  其中，最重要的三种数据结构：</p>
+<ul>
+<li><p>Map: 键值对集合，对应于Object</p>
+</li>
+<li><p>List: 有序可重复的列表，对应于Array</p>
+</li>
+<li><p>Set：无序不可重复的列表<br>immutable Data 一旦创建，就不能再被更改的数据，对immutable对象的任何修改和添加删除操作，都会返回一个新的immutable对象，这是其最本<br>质的特点</p>
+<p>为什么数据不能被改变，这是由于我们所运用的场景，比如redux来决定的， redux的基本原则是redux里的数据都是只读的，所以如果在redux中要对<br>数据进行操作，那么就需要对原数据进行拷贝操作，这时候就可以用到immutable；另一种情况是在一个复杂的业务场景中，存在一个共享数据，当多个<br>业务场景都可以操作这个数据时，就会出现不可控的结果。</p></li></ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/08/26/immutable-js/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://wanliang1986.github.io/2020/07/12/window%E4%B8%AD%E7%9A%84fetch%E8%AF%B7%E6%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1570,7 +1886,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1592,7 +1908,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
