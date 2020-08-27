@@ -93,7 +93,7 @@
 <meta property="og:site_name" content="万_BLOG">
 <meta property="og:description" content="介绍  immutable与react同期出现，但没有被默认放到react工具集中。它内部实现了一套完整的数据持久化体系，同时还有很多比较容易使用的数据类型，  比如 List,Map,Set等  其中，最重要的三种数据结构：  Map: 键值对集合，对应于Object  List: 有序可重复的列表，对应于Array  Set：无序不可重复的列表immutable Data 一旦创建，就不能再被">
 <meta property="article:published_time" content="2020-08-26T05:16:37.000Z">
-<meta property="article:modified_time" content="2020-08-27T05:01:48.935Z">
+<meta property="article:modified_time" content="2020-08-27T06:38:47.957Z">
 <meta property="article:author" content="DEAR_WAN">
 <meta property="article:tag" content="immutable.js">
 <meta name="twitter:card" content="summary">
@@ -365,8 +365,8 @@
 </li>
 <li><p>List: 有序可重复的列表，对应于Array</p>
 </li>
-<li><p>Set：无序不可重复的列表<br>immutable Data 一旦创建，就不能再被更改的数据，对immutable对象的任何修改和添加删除操作，都会返回一个新的immutable对象，这是其最本<br>质的特点</p>
-<p>为什么数据不能被改变，这是由于我们所运用的场景，比如redux来决定的， redux的基本原则是redux里的数据都是只读的，所以如果在redux中要对<br>数据进行操作，那么就需要对原数据进行拷贝操作，这时候就可以用到immutable；另一种情况是在一个复杂的业务场景中，存在一个共享数据，当多个<br>业务场景都可以操作这个数据时，就会出现不可控的结果。</p>
+<li><p>Set：无序不可重复的列表<br>immutable Data 一旦创建，就不能再被更改的数据，对immutable对象的任何修改和添加删除操作，都会返回一个新的immutable对象，这是其最本质的特点</p>
+<p>为什么数据不能被改变，这是由于我们所运用的场景，比如redux来决定的， redux的基本原则是redux里的数据都是只读的，所以如果在redux中要对数据进行操作，那么就需要对原数据进行拷贝操作，这时候就可以用到immutable；另一种情况是在一个复杂的业务场景中，存在一个共享数据，当多个业务场景都可以操作这个数据时，就会出现不可控的结果。</p>
 <a id="more"></a>
 <p>优点：</p>
 </li>
